@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResumeAI — Analyzer & Job Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">Resume<span>AI</span></div>
+      <p class="tagline">Upload your resume — get your score, skill gaps, and best-fit jobs instantly.</p>
+    </div>
+  </header>
+
+  <!-- Upload Section -->
+  <main class="container">
+    <section class="upload-card" id="uploadSection">
+      <div class="upload-area" id="dropZone">
+        <div class="upload-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 32V16M24 16L18 22M24 16L30 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 32v4a4 4 0 004 4h24a4 4 0 004-4v-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="upload-title">Drop your resume here</p>
+        <p class="upload-sub">PDF, DOCX, or TXT &nbsp;·&nbsp; Max 5MB</p>
+        <label class="btn-upload" for="fileInput">Browse File</label>
+        <input type="file" id="fileInput" accept=".pdf,.docx,.txt" hidden />
+      </div>
+      <div id="fileInfo" class="file-info hidden">
+        <span id="fileName"></span>
+        <button id="clearFile" class="clear-btn">✕</button>
+      </div>
+      <button class="btn-analyze" id="analyzeBtn" disabled>Analyze Resume</button>
+      <div class="spinner hidden" id="spinner">
+        <div class="spin-ring"></div>
+        <span>Analyzing your resume…</span>
+      </div>
+      <div class="error-msg hidden" id="errorMsg"></div>
+    </section>
+
+    <!-- Results -->
+    <div id="results" class="hidden">
+
+      <!-- Profile + Score row -->
+      <div class="row-two">
+        <section class="card profile-card">
+          <h2 class="card-title">Candidate Profile</h2>
+          <div class="profile-grid">
+            <div class="profile-item"><span class="label">Name</span><span id="rName" class="value">—</span></div>
+            <div class="profile-item"><span class="label">Email</span><span id="rEmail" class="value">—</span></div>
+            <div class="profile-item"><span class="label">Phone</span><span id="rPhone" class="value">—</span></div>
+            <div class="profile-item"><span class="label">Words</span><span id="rWords" class="value">—</span></div>
+          </div>
+          <div class="sections-check" id="sectionsCheck"></div>
+        </section>
+
+        <section class="card score-card">
+          <h2 class="card-title">Resume Score</h2>
+          <div class="score-ring-wrap">
+            <svg class="score-ring" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" class="ring-bg"/>
+              <circle cx="60" cy="60" r="50" class="ring-fill" id="ringFill"/>
+            </svg>
+            <div class="score-center">
+              <span id="scoreNum" class="score-num">0</span>
+              <span class="score-label">/100</span>
+            </div>
+          </div>
+          <div class="score-grade" id="scoreGrade"></div>
+          <div class="breakdown" id="breakdown"></div>
+        </section>
+      </div>
+
+      <!-- Skills -->
+      <section class="card">
+        <h2 class="card-title">Detected Skills <span id="skillCount" class="badge"></span></h2>
+        <div class="skills-wrap" id="skillsWrap"></div>
+      </section>
+
+      <!-- Suggestions -->
+      <section class="card suggestions-card">
+        <h2 class="card-title">Improvement Tips</h2>
+        <ul class="tips-list" id="tipsList"></ul>
+      </section>
+
+      <!-- Job Recommendations -->
+      <section class="card jobs-card">
+        <h2 class="card-title">Recommended Jobs</h2>
+        <p class="jobs-sub">Matched based on your skills</p>
+        <div class="jobs-grid" id="jobsGrid"></div>
+      </section>
+
+      <div class="re-analyze">
+        <button class="btn-analyze secondary" id="reAnalyzeBtn">Analyze Another Resume</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">Built with Flask · ResumeAI</div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
