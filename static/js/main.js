@@ -127,10 +127,10 @@ function renderResults(data) {
 
   // Grade
   const gradeEl = document.getElementById('scoreGrade');
-  if (score >= 80) { gradeEl.textContent = '🏆 Excellent'; gradeEl.style.color = '#4ade80'; }
-  else if (score >= 65) { gradeEl.textContent = '👍 Good'; gradeEl.style.color = '#fbbf24'; }
-  else if (score >= 45) { gradeEl.textContent = '⚡ Average'; gradeEl.style.color = '#f97316'; }
-  else { gradeEl.textContent = '⚠️ Needs Work'; gradeEl.style.color = '#f87171'; }
+  if (score >= 80) { gradeEl.textContent = 'Excellent'; gradeEl.style.color = '#4ade80'; }
+  else if (score >= 65) { gradeEl.textContent = 'Good'; gradeEl.style.color = '#fbbf24'; }
+  else if (score >= 45) { gradeEl.textContent = 'Average'; gradeEl.style.color = '#f97316'; }
+  else { gradeEl.textContent = 'Needs Work'; gradeEl.style.color = '#f87171'; }
 
   // Breakdown
   const bdEl = document.getElementById('breakdown');
@@ -171,8 +171,8 @@ function renderResults(data) {
             <span class="job-title">${job.title}</span>
             <span class="match-badge ${cls}">${pct}% match</span>
           </div>
-          <div class="job-company">🏢 ${job.company} ${realBadge}</div>
-          <div class="job-loc">📍 ${job.location}</div>
+          <div class="job-company">${job.company} ${realBadge}</div>
+          <div class="job-loc">${job.location}</div>
           <div class="job-desc">${job.description}</div>
           <div class="job-matched">
             ${job.matched_skills.map(s => `<span class="matched-tag">${s}</span>`).join('')}
