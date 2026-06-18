@@ -1,2 +1,2 @@
 ## Resume Analyse and recommend job
-Using the machine learning
+Using the machine learning and ai integration 
